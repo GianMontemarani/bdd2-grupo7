@@ -400,5 +400,63 @@ begin
 end //
 delimiter ;
 
+--Ingreso de datos (hay problemas con el id medico 2)
+
+INSERT INTO Medico (nombre, apellido, especialidad) VALUES 
+('Juan', 'Perez', 'Cardiología'),
+('María', 'Lopez', 'Neurología'),
+('Pedro', 'Gomez', 'Pediatría'),
+('Ana', 'Martinez', 'Dermatología'),
+('Luis', 'Garcia', 'Oftalmología'),
+('Sofia', 'Rodriguez', 'Ginecología'),
+('Carlos', 'Hernandez', 'Psiquiatría'),
+('Laura', 'Jimenez', 'Ortopedia'),
+('Miguel', 'Fernandez', 'Endocrinología'),
+('Julia', 'Torres', 'Oncología');
+
+INSERT INTO Disponibilidad (dia, medico_id) VALUES 
+('viernes', 3),
+('sabado', 3),
+('domingo', 4),
+('lunes', 4),
+('martes', 5),
+('miercoles', 5),
+('jueves', 6),
+('viernes', 6),
+('sabado', 7),
+('domingo', 7),
+('lunes', 8),
+('martes', 8),
+('miercoles', 9),
+('jueves', 9),
+('viernes', 10),
+('sabado', 10);
+
+INSERT INTO Paciente (nombre, apellido, edad, telefono, contacto_emergencia) VALUES 
+('Carlos', 'Morales', 45, '555-1234', 'Ana Morales'),
+('Lucia', 'Sanchez', 34, '555-5678', 'Pedro Sanchez'),
+('Raul', 'Mendoza', 29, '555-8765', 'Sara Mendoza'),
+('Marta', 'Vega', 53, '555-4321', 'Luis Vega'),
+('Juan', 'Nunez', 22, '555-2345', 'Laura Nunez'),
+('Ana', 'Ruiz', 37, '555-6789', 'Carlos Ruiz'),
+('Pedro', 'Ponce', 41, '555-9876', 'Maria Ponce'),
+('Laura', 'Castro', 26, '555-3456', 'Miguel Castro'),
+('Jose', 'Ortega', 55, '555-5432', 'Marta Ortega'),
+('Elena', 'Diaz', 33, '555-8767', 'Juan Diaz');
+
+
+INSERT INTO Cita (medico_id, paciente_id, estado, fecha, comentario) VALUES 
+(1, 1, 'Programado', '2024-07-01', 'Traer estudios previos'),
+(3, 3, 'Cancelado', '2024-07-03', 'Reprogramar cita'),
+(4, 4, 'Programado', '2024-07-04', 'Traer ropa holgada'),
+(5, 5, 'Programado', '2024-07-05', 'Venir con un acompañante'),
+(6, 6, 'Programado', '2024-07-06', 'Traer estudios previos'),
+(7, 7, 'Programado', '2024-07-07', 'Ayuno de 8 horas'),
+(8, 8, 'Cancelado', '2024-07-08', 'Reprogramar cita'),
+(9, 9, 'Programado', '2024-07-09', 'Traer ropa holgada'),
+(10, 10, 'Programado', '2024-07-10', 'Venir con un acompañante');
+
+
+
 
 
