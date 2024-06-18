@@ -391,7 +391,14 @@ END //
 DELIMITER ;
 
 
-
+-- Traer agenda de algun medioc
+delimiter//
+create procedure traerAgenda(in id_medico int)
+begin
+	select * from cita
+	where medico_id = id_medico;
+end //
+delimiter ;
 
 
 
