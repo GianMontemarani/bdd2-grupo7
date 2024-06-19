@@ -1,0 +1,8 @@
+{
+  "nombre": "Dr. Juan Pérez",
+  "correo": "juan.perez@example.com",
+  "rol": "medico",
+  "permisos": ["crear_reportes", "editar_pacientes", "ver_citas"],
+  "hash_contrasena": "hashed_password",
+  "salt": "unique_salt"
+}

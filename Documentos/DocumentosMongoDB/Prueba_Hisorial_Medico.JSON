@@ -1,0 +1,57 @@
+{
+    "paciente_id": "12345",
+    "nombre": "Juan Pérez",
+    "fecha_nacimiento": "1980-01-01",
+    "tratamientos": [
+      {
+        "tratamiento_id": ObjectId(),
+        "fecha": "2024-06-01",
+        "medicacion": [
+          {
+            "nombre": "Medicamento A",
+            "dosis": "10mg",
+            "frecuencia": "dos veces al día"
+          }
+        ],
+        "procedimientos": [
+          {
+            "nombre": "Procedimiento A",
+            "fecha": "2024-06-01",
+            "notas": "El procedimiento fue exitoso."
+          }
+        ],
+        "recomendaciones": "El paciente debe descansar una semana."
+      }
+    ],
+    "hospitalizaciones": [
+      {
+        "hospitalizacion_id": ObjectId(),
+        "fecha_ingreso": "2024-05-15",
+        "fecha_alta": "2024-05-20",
+        "detalles": "El paciente fue tratado por neumonía."
+      }
+    ],
+    "historial_medico": [
+      {
+        "historial_id": ObjectId(),
+        "fecha": "2023-12-01",
+        "diagnostico": "Hipertensión",
+        "tratamientos": [
+          {
+            "nombre": "Medicamentos antihipertensivos",
+            "dosis": "5mg",
+            "frecuencia": "una vez al día"
+          }
+        ],
+        "observaciones": "La presión arterial del paciente mejoró significativamente."
+      }
+    ],
+    "comentarios": [
+      {
+        "comentario_id": ObjectId(),
+        "medico_id": "doc123",
+        "fecha": "2024-06-01",
+        "comentario": "El paciente está respondiendo bien al tratamiento."
+      }
+    ]
+  }
