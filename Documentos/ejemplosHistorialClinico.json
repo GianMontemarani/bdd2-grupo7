@@ -1,0 +1,57 @@
+//Diagnostico
+{
+    "id_paciente": "1",
+    "id_medico": "3",
+    "tipo": "diagnostico",
+    "titulo": "Gripe",
+    "descripcion": "El paciente presenta dolor de cabeza y tos",
+    "comentarios": "El paciente no tenia fiebre"
+}
+
+//Tratameinto
+{ 
+    "id_paciente": "1",
+    "id_medico": "3",
+    "tipo": "tratamiento",
+    "titulo": "Tratamiento para la gripe",
+    "medicacion": [
+        {
+            "nombre": "Medicamento A",
+            "dosis": "10mg",
+            "frecuencia": "dos veces al día"
+        }
+    ],
+    "procedimientos": [
+        {
+            "nombre": "Procedimiento A",
+            "fecha": "2024-06-01",
+            "notas": "El procedimiento fue exitoso."
+        }
+    ],
+    "recomendaciones": "El paciente debe descansar una semana."
+}
+
+{ 
+    "id_paciente": "1",
+    "id_medico": "3",
+    "tipo": "hospitalizacion",
+    "titulo": "Cirujia de apendice",
+    "fecha_ingreso": "2024-06-01",
+    "fecha_salida": "2024-06-03",
+    "ambulatorio": false,
+    "medicacion": [
+        {
+            "nombre": "Medicamento A",
+            "dosis": "10mg",
+            "frecuencia": "dos veces al día"
+        }
+    ],
+    "procedimientos": [
+        {
+            "nombre": "Procedimiento A",
+            "fecha": "2024-06-01",
+            "notas": "El procedimiento fue exitoso."
+        }
+    ],
+    "recomendaciones": "El paciente debe descansar una semana."
+}
