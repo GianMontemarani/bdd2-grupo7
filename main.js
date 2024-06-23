@@ -38,7 +38,7 @@ pool.getConnection((err, connection) => {
 });
 
 app.get('/getMedicos', (req, res) => {
-    pool.query('call mostratMedicos()', (err, result) => {
+    pool.query('call mostrarMedicos()', (err, result) => {
         if (err) {
             console.error('Error consultando medicos', err);
             res.status(500).send('Error consultando medicos');
@@ -86,19 +86,55 @@ app.get('/getCitasPaciente', (req, res) => {
 app.post('/agendar', (req, res) => {
     let { id_medico, id_paciente, fecha, comentario } = req.body;
     fecha = new Date(fecha).toISOString().slice(0, 19).replace('T', ' ');
-    pool.query("call CrearCita(?,?,'Programado',?,?)", [id_medico, id_paciente, fecha, comentario], (err, result) => {
+
+    pool.query('SELECT * FROM Medico WHERE medico_id = ? LIMIT 1', [id_medico], (err, result) => {
         if (err) {
-            console.error('Error insertando cita', err);
-            res.status(500).send('Error insertando cita');
+            console.error('Error consultando medico', err);
+            res.status(500).send('Error consultando medico');
         } else {
-            res.json(result);
+            if (result.length === 0) {
+                res.status(404).send('Medico no encontrado');
+            } else {
+                pool.query('SELECT * FROM Paciente WHERE paciente_id = ? LIMIT 1', [id_paciente], (err, result) => {
+                    if (err) {
+                        console.error('Error consultando paciente', err);
+                        res.status(500).send('Error consultando paciente');
+                    } else {
+                        if (result.length === 0) {
+                            res.status(404).send('Paciente no encontrado');
+                        } else {
+                            pool.query('SELECT dia FROM Disponibilidad WHERE medico_id = ?', [id_medico], (err, result) => {
+                                if (err) {
+                                    console.error('Error consultando disponibilidad', err);
+                                    res.status(500).send('Error consultando disponibilidad');
+                                } else {
+                                    let dia = new Date(fecha).getDay();
+                                    let diasString = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+                                    if (result.length === 0 || !result.find((d) => d.dia === diasString[dia - 1])) {
+                                        res.status(400).send('El medico no esta disponible en ese dia');
+                                    }else{
+                                        pool.query('call CrearCita(?,?,"Programado",?,?)', [id_medico, id_paciente, fecha, comentario], (err, result) => {
+                                            if (err) {
+                                                console.error('Error insertando cita', err);
+                                                res.status(500).send('Error insertando cita');
+                                            } else {
+                                                res.json(result);
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
         }
     });
 });
 
 app.post('/cancelarCita', (req, res) => {
     let { id_cita } = req.body;
-    pool.query('UPDATE Cita SET estado = "Cancelado" WHERE cita_id = p_cita_id;', [id_cita], (err, result) => {
+    pool.query('UPDATE Cita SET estado = "Cancelado" WHERE cita_id = ?;', [id_cita], (err, result) => {
         if (err) {
             console.error('Error cancelando cita', err);
             res.status(500).send('Error cancelando cita');
@@ -111,7 +147,7 @@ app.post('/cancelarCita', (req, res) => {
 app.post('/modificarCita', (req, res) => {
     let { id_cita, fecha, comentario } = req.body;
     fecha = new Date(fecha).toISOString().slice(0, 19).replace('T', ' ');
-    
+
     pool.query('SELECT * FROM Cita WHERE cita_id = ? LIMIT 1', [id_cita], (err, result) => {
         if (err) {
             console.error('Error consultando cita', err);
@@ -137,8 +173,8 @@ app.post('/modificarCita', (req, res) => {
 app.get('/getDocumentos', (req, res) => {
     let id_paciente = req.query.id_paciente;
     let tipo_documento = req.query.tipo_documento;
-    
-    let documentos = dbMongo.collection(tipo_documento).find({id_paciente}).toArray();
+
+    let documentos = dbMongo.collection(tipo_documento).find({ id_paciente }).toArray();
     documentos.then((documentos) => {
         res.json(documentos);
     }).catch((error) => {
@@ -148,7 +184,7 @@ app.get('/getDocumentos', (req, res) => {
 });
 
 app.post('/subirDoc', (req, res) => {
-    let { id_paciente, id_medico, tipo} = req.body;
+    let { id_paciente, id_medico, tipo } = req.body;
 
     pool.query('SELECT * FROM Paciente WHERE paciente_id = ? LIMIT 1', [id_paciente], (err, result) => {
         if (err) {
@@ -167,7 +203,7 @@ app.post('/subirDoc', (req, res) => {
                             res.status(404).send('Medico no encontrado');
                         } else {
                             let fecha = new Date().toISOString().slice(0, 19).replace('T', ' ');
-                            let documento = {fecha, ...req.body };
+                            let documento = { fecha, ...req.body };
                             dbMongo.collection(tipo).insertOne(documento, (error, result) => {
                                 if (error) {
                                     console.error('Error subiendo documento', error);
@@ -196,9 +232,9 @@ app.get('/generarReporte', (req, res) => {
                 res.status(404).send('Paciente no encontrado');
             } else {
                 let paciente = result[0];
-                let diagnosticos = dbMongo.collection('diagnostico').find({id_paciente}).toArray();
-                let hospitalizaciones = dbMongo.collection('hospitalizacion').find({id_paciente}).toArray();
-                let tratamientos = dbMongo.collection('tratamiento').find({id_paciente}).toArray();
+                let diagnosticos = dbMongo.collection('diagnostico').find({ id_paciente }).toArray();
+                let hospitalizaciones = dbMongo.collection('hospitalizacion').find({ id_paciente }).toArray();
+                let tratamientos = dbMongo.collection('tratamiento').find({ id_paciente }).toArray();
 
                 Promise.all([diagnosticos, hospitalizaciones, tratamientos]).then(([diagnosticos, hospitalizaciones, tratamientos]) => {
                     let reporte = { paciente, diagnosticos, hospitalizaciones, tratamientos };
@@ -226,7 +262,7 @@ app.post('/nuevoMedico', (req, res) => {
 
 app.post('/nuevoPaciente', (req, res) => {
     let { nombre, apellido, edad, telefono, contacto_emergencia } = req.body;
-    pool.query('call CrearPaciente(?,?,?,?)', [nombre, apellido, edad, telefono, contacto_emergencia], (err, result) => {
+    pool.query('call CrearPaciente(?,?,?,?,?)', [nombre, apellido, edad, telefono, contacto_emergencia], (err, result) => {
         if (err) {
             console.error('Error creando paciente', err);
             res.status(500).send('Error creando paciente');
@@ -236,33 +272,55 @@ app.post('/nuevoPaciente', (req, res) => {
     });
 });
 
-app.post('actualizarMedico', (req, res) => {
-    let { id_medico, nombre, apellido, especialidad } = req.body;
+app.post('/actualizarMedico', (req, res) => {
+    let {id_medico, campo, valor} = req.body;
 
-    pool.query('call ActualizarMedico(?,?,?,?)', [id_medico, nombre, apellido, especialidad], (err, result) => {
+    pool.query('SELECT * FROM Medico WHERE medico_id = ? LIMIT 1', [id_medico], (err, result) => {
         if (err) {
-            console.error('Error actualizando medico', err);
-            res.status(500).send('Error actualizando medico');
+            console.error('Error consultando medico', err);
+            res.status(500).send('Error consultando medico');
         } else {
-            res.json(result);
+            if (result.length === 0) {
+                res.status(404).send('Medico no encontrado');
+            } else {
+                pool.query('call modificarMedico(?,?,?)', [id_medico, campo, valor], (err, result) => {
+                    if (err) {
+                        console.error('Error actualizando medico', err);
+                        res.status(500).send('Error actualizando medico');
+                    } else {
+                        res.json(result);
+                    }
+                });
+            }
         }
     });
 });
 
-app.post('actualizarPaciente', (req, res) => {
+app.post('/actualizarPaciente', (req, res) => {
     let { id_paciente, nombre, apellido, edad, telefono, contacto_emergencia } = req.body;
 
-    pool.query('call ActualizarPaciente(?,?,?,?,?,?)', [id_paciente, nombre, apellido, edad, telefono, contacto_emergencia], (err, result) => {
+    pool.query('SELECT * FROM Medico WHERE medico_id = ? LIMIT 1', [id_paciente], (err, result) => {
         if (err) {
-            console.error('Error actualizando paciente', err);
-            res.status(500).send('Error actualizando paciente');
+            console.error('Error consultando paciente', err);
+            res.status(500).send('Error consultando paciente');
         } else {
-            res.json(result);
+            if (result.length === 0) {
+                res.status(404).send('Paciente no encontrado');
+            } else {
+                pool.query('call ActualizarPaciente(?,?,?,?,?,?)', [id_paciente, nombre, apellido, edad, telefono, contacto_emergencia], (err, result) => {
+                    if (err) {
+                        console.error('Error actualizando paciente', err);
+                        res.status(500).send('Error actualizando paciente');
+                    } else {
+                        res.json(result);
+                    }
+                });
+            }
         }
     });
 });
 
-app.post('eliminarMedico', (req, res) => {
+app.post('/eliminarMedico', (req, res) => {
     let { id_medico } = req.body;
 
     pool.query('call EliminarMedico(?)', [id_medico], (err, result) => {
@@ -275,7 +333,7 @@ app.post('eliminarMedico', (req, res) => {
     });
 });
 
-app.post('eliminarPaciente', (req, res) => {
+app.post('/eliminarPaciente', (req, res) => {
     let { id_paciente } = req.body;
 
     pool.query('call EliminarPaciente(?)', [id_paciente], (err, result) => {

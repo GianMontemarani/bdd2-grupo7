@@ -25,9 +25,9 @@ postNuevoMedico --> in: nombre, apellido, especialidad out: json con mensaje de 
 
 postNuevoPaciente --> in: nombre, apellido, edad, telefono, contacto_emergencia out: json con mensaje de confirmacion/error
 
-postModificarMedico --> in: id, nombre, apellido, dni, matricula, especialidad out: json con mensaje de confirmacion/error
+postModificarMedico --> in: id, campo a modificar, nuevo valor out: json con mensaje de confirmacion/error
 
-postModificarPaciente --> in: id, nombre, apellido, dni, obraSocial out: json con mensaje de confirmacion/error
+postModificarPaciente --> in: id, nombre, apellido out: json con mensaje de confirmacion/error
 
 postEliminarMedico --> in: id out: json con mensaje de confirmacion/error
 

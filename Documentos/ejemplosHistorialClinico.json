@@ -30,7 +30,7 @@
     ],
     "recomendaciones": "El paciente debe descansar una semana."
 }
-
+//Hospitalizacion
 { 
     "id_paciente": "1",
     "id_medico": "3",
