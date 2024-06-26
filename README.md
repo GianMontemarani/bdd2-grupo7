@@ -9,10 +9,15 @@ La finalidad de este proyecto es aplicar los conocimientos durante la cursada de
 > "La persitencia poliglota es el uso de diferentes tecnologias para diferentes tipos de problemas que se presentan a un proyecto y que se complementen en distintas tareas al momento de crear el proyecto."
 Se realizaran operaciones crud en todas las entidades con la finalidad de obtener los resultados esperado
 ## Responsabilidades de cada base de datos
-[![mongologo.png](https://i.postimg.cc/sfYr6YHF/mongologo.png)](https://postimg.cc/DmwHmXK5)
+[![mongito.jpg](https://i.postimg.cc/251r83dC/mongito.jpg)](https://postimg.cc/mcW0mL6n)
 ### MongoDB
 - Se encargara de desarollar reportes de a partir de las citas.
 - Mostrar un documento que muestre el historial medico de cada paciente formado por tres documentos(diagnostico,tratamiento, hospitalizacion)
+  
+[![logitodelfin.jpg](https://i.postimg.cc/5yRXyDHr/logitodelfin.jpg)](https://postimg.cc/zHTzPtFw)
+### MySQL
+- Se encargara de la generacion de citas importante por necesitar los ID de distintas entidades.
+- ABM (alta, baja o modificacion) de las entidades Medico, Disponibilidad, Paciente, Cita.
 ## Capturas de pantalla
 ## Ayuda
 En el caso de que no se pueda iniciar mySQL se debera correr el siguiente comando en la terminal del sistema operativo
