@@ -16,13 +16,12 @@ El proyecto corresponde a un trabajo práctico grupal para la materia Ingenierí
 - Muestra un documento que exhibe el historial médico de cada paciente, el cual está formado por otros tres documentos: diagnóstico, tratamiento y hospitalización.
 
  ## Instrucciones de instalacion y configuracion.
+ En primer lugar, clonar el repositorio en tu máquina local.
  ```bash
  git clone https://github.com/GianMontemarani/bdd2-grupo7
 ```
-Iniciar MySQL workbench y correr la query .sql dentro de la carpeta de este repositorio.
-```bash
-[Tablas_y_storedProcedures.sql](https://github.com/GianMontemarani/bdd2-grupo7/blob/master/Documentos/Creaci%C3%B3nTablas_y_StoredProcedures.sql)
-```
+Iniciar MySQL workbench y correr la query [Tablas_y_storedProcedures.sql](https://github.com/GianMontemarani/bdd2-grupo7/blob/master/Documentos/Creaci%C3%B3nTablas_y_StoredProcedures.sql)
+
 Iniciar la aplicacion MongoDB compass (desktop) o Atlas (browser).
 
 La aplicacion reponde a las siguientes queries HTTP en Postman (los valores de la colección son a modo de ejemplo).
