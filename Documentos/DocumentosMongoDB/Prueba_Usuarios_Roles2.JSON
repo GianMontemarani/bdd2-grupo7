@@ -1,8 +1,0 @@
-{
-  "nombre": "Paula Méndez",
-  "correo": "paula.mendez@example.com",
-  "rol": "administrativo",
-  "permisos": ["crear_pacientes", "ver_reportes", "gestionar_citas"],
-  "hash_contrasena": "hashed_password",
-  "salt": "unique_salt"
-}
