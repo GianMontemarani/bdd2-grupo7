@@ -24,8 +24,9 @@ El proyecto corresponde a un trabajo práctico grupal para la materia Ingenierí
 2. Iniciar MySQL workbench y correr la query .sql dentro de la carpeta de este repositorio. [link](https://github.com/GianMontemarani/bdd2-grupo7/blob/master/Documentos/Creaci%C3%B3nTablas_y_StoredProcedures.sql)
 
 3. Iniciar la aplicacion MongoDB compass o Atlas.
-4. Iniciar la apliacion de Postman
-5. La aplicacion reponde a las siguientes queries HTTP en Postman (los valores de la BD son a modo de ejemplo).
+4. Configurar dentro el archivo .env de acuerdo a los parametros de configuracion locales.
+5. Iniciar la apliacion de Postman
+6. La aplicacion reponde a las siguientes queries HTTP en Postman (los valores de la BD son a modo de ejemplo).
 
 <details>
  <summary><code>GET</code> <code><b>.../</b></code> <code>getMedicos (Devuelve todos los medicos de la BD)</code></summary>
@@ -258,6 +259,8 @@ Ninguno
 </details>
 
 
+## Observaciones
+Las pruebas se realizaron en un ambiente local (localhost)
 
 ## Ayuda
 En el caso de que no se pueda iniciar mySQL se debera correr el siguiente comando en la terminal del sistema operativo
