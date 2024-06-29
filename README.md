@@ -21,7 +21,7 @@ El proyecto corresponde a un trabajo práctico grupal para la materia Ingenierí
  ```bash
  git clone https://github.com/GianMontemarani/bdd2-grupo7
 ```
-2. Iniciar MySQL workbench y correr la query .sql dentro de la carpeta de este repositorio. [link](https://github.com/GianMontemarani/bdd2-grupo7/blob/master/Documentos/Creaci%C3%B3nTablas_y_StoredProcedures.sql)
+2. Iniciar MySQL workbench y correr la query [Tablas_y_StoredProcedures.sql](https://github.com/GianMontemarani/bdd2-grupo7/blob/master/Documentos/Creaci%C3%B3nTablas_y_StoredProcedures.sql)
 
 3. Iniciar la aplicacion MongoDB compass o Atlas.
 4. Configurar dentro el archivo .env de acuerdo a los parametros de configuracion locales.
