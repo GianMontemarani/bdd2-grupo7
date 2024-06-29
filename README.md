@@ -26,7 +26,7 @@ El proyecto corresponde a un trabajo práctico grupal para la materia Ingenierí
 3. Iniciar la aplicacion MongoDB compass o Atlas.
 4. Configurar dentro el archivo .env de acuerdo a los parametros de configuracion locales.
 5. Iniciar la apliacion de Postman
-6. La aplicacion reponde a las siguientes queries HTTP en Postman (los valores de la BD son a modo de ejemplo).
+6. La aplicacion reponde a las siguientes queries HTTP en Postman (los valores de la BD son a modo de ejemplo) Algunos ejemplos.[link](https://github.com/GianMontemarani/bdd2-grupo7/blob/master/Documentos/In%26out_EndPoints.txt)
 
 <details>
  <summary><code>GET</code> <code><b>.../</b></code> <code>getMedicos (Devuelve todos los medicos de la BD)</code></summary>
