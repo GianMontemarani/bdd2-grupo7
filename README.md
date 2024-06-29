@@ -15,19 +15,39 @@ El proyecto corresponde a un trabajo práctico grupal para la materia Ingenierí
 - Se encarga de desarollar reportes a partir de las citas.
 - Muestra un documento que exhibe el historial médico de cada paciente, el cual está formado por otros tres documentos: diagnóstico, tratamiento y hospitalización.
 
+## Ayuda
+En el caso de que no se pueda iniciar mySQL se debera correr el siguiente comando en la terminal del sistema operativo
+> sudo /usr/local/mysql/support-files/mysql.server start
+> 
+> sudo /usr/local/mysql/support-files/mysql.server stop
+> 
+> sudo /usr/local/mysql/support-files/mysql.server restart
+> 
+
+[Link de la solucion original](https://stackoverflow.com/questions/41995912/macos-cant-start-mysql-server "Link de la solucion original")
+
+## Tecnologías Utilizadas
+
+![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=white)
+ ![Express.js Badge](https://img.shields.io/badge/Express.js-000000?logo=express&logoColor=white)
+ ![MongoDB Badge](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
+ ![MySQL Badge](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
+ ![LaTeX Badge](https://img.shields.io/badge/LaTeX-008080?logo=latex&logoColor=white)
+
  ## Instrucciones de instalacion y configuracion.
- En primer lugar, clonar el repositorio en tu máquina local.
  ```bash
  git clone https://github.com/GianMontemarani/bdd2-grupo7
 ```
-Iniciar MySQL workbench y correr la query [Tablas_y_storedProcedures.sql](https://github.com/GianMontemarani/bdd2-grupo7/blob/master/Documentos/Creaci%C3%B3nTablas_y_StoredProcedures.sql)
+Iniciar MySQL workbench y correr la query .sql dentro de la carpeta de este repositorio.
+```bash
+https://github.com/GianMontemarani/bdd2-grupo7/blob/master/Documentos/Creaci%C3%B3nTablas_y_StoredProcedures.sql
+```
+Iniciar la aplicacion MongoDB compass o Atlas.
 
-Iniciar la aplicacion MongoDB compass (desktop) o Atlas (browser).
-
-La aplicacion reponde a las siguientes queries HTTP en Postman (los valores de la colección son a modo de ejemplo).
+La aplicacion reponde a las siguientes queries HTTP en Postman (los valores de la BD son a modo de ejemplo).
 
 <details>
- <summary><code>GET</code> <code><b>.../</b></code> <code>getMedicos</code></summary>
+ <summary><code>GET</code> <code><b>.../</b></code> <code>getMedicos (Devuelve todos los medicos de la BD)</code></summary>
 
 ##### Parametros
 Ninguno
@@ -114,24 +134,16 @@ Ninguno
 ]
 ```
 
-## Ayuda
-En el caso de que no se pueda iniciar mySQL se debera correr el siguiente comando en la terminal del sistema operativo
-> sudo /usr/local/mysql/support-files/mysql.server start
-> 
-> sudo /usr/local/mysql/support-files/mysql.server stop
-> 
-> sudo /usr/local/mysql/support-files/mysql.server restart
-> 
+<details>
+ <summary><code>GET</code> <code><b>.../</b></code> <code> getPacientes  (Devuelve todos los Pacientes de la BD)</code></summary>
 
-[Link de la solucion original](https://stackoverflow.com/questions/41995912/macos-cant-start-mysql-server "Link de la solucion original")
+##### Parametros
+Ninguno
+##### Respuesta JSON
+```bash
 
-## Tecnologías Utilizadas
 
-![JavaScript Badge](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=white)
- ![Express.js Badge](https://img.shields.io/badge/Express.js-000000?logo=express&logoColor=white)
- ![MongoDB Badge](https://img.shields.io/badge/MongoDB-47A248?logo=mongodb&logoColor=white)
- ![MySQL Badge](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
- ![LaTeX Badge](https://img.shields.io/badge/LaTeX-008080?logo=latex&logoColor=white)
+
 
 
 
